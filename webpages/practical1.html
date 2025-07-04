@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal</title>
+   
+</head>
+<body>
+    <h1 style= color:red><em>Welcome to Charusat Student Portal</em></h1>
+    <div id="logo"><img src="charusat logo.jpeg" width="500px" height="80px"   alt="img"></div>
+   
+    <div> 
+      <a onclick="showSection('home')">Home</a>
+      <a onclick="showSection('login')">Login</a>
+      <a onclick="showSection('register')">Register</a>
+      <a onclick="showSection('dashboard')">Dashboard</a>
+      <a onclick="showSection('profile')">Profile</a>
+      <a onclick="showSection('courses')">Courses</a>
+   </div>
+   </div>
+   <!-- Home -->
+  <section id="home">
+    <h2>Home</h2>
+    <p>Welcome to the Student Portal. Access all your academic needs from one place.</p>
+  </section>
+<!-- Login -->
+  <section id="login">
+    <h2>Login</h2>
+    <form>
+      <label for="username">Username:</label><br />
+      <input type="text" id="username" name="username"><br />
+      <label for="password">Password:</label><br />
+      <input type="password" id="password" name="password"><br />
+      <button type="submit">Login</button>
+    </form>
+  </section>
+
+  <!-- Register -->
+  <section id="register">
+    <h2>Register</h2>
+    <form>
+      <label for="name">Full Name:</label><br />
+      <input type="text" id="name" name="name"><br />
+      <label for="email">Email:</label><br />
+      <input type="email" id="email" name="email"><br />
+      <label for="password">Password:</label><br />
+      <input type="password" id="password" name="password"><br />
+      <button type="submit">Register</button>
+    </form>
+  </section>
+
+  <!-- Dashboard -->
+  <section id="dashboard">
+    <h2>Dashboard</h2>
+    <p>Welcome, Student! Quick access to your courses, assignments, and grades.</p>
+  </section>
+
+  <!-- Profile -->
+  <section id="profile">
+    <h2>Profile</h2>
+    <p>Name: shreeja vaishnani</p>
+    <p>Email: shreejavaishnani00.com</p>
+    <p>Student ID: 138</p>
+  </section>
+
+  <!-- Courses -->
+  <section id="courses">
+    <h2>Courses</h2>
+    <ul>
+      <li>Mathematics</li>
+      <li>Web Development</li>
+      <li>OOP</li>
+      <li>Java</li>
+      <li>dsa</li>
+    </ul>
+  </section>
+  <script>
+    function showSection(sectionId) {
+      // Hide all sections
+      const sections = document.querySelectorAll('section');
+      sections.forEach(sec => sec.style.display = 'none');
+
+      // Show selected section
+      const activeSection = document.getElementById(sectionId);
+      if (activeSection) {
+        activeSection.style.display = 'block';
+      }
+    }
+
+    // Show Home by default on load
+    showSection('home');
+  </script>
+
+  
+</body>
+</html>

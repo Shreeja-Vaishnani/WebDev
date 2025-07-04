@@ -1,0 +1,31 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    color: white;
+    flex: 1;
+
+    gap: 1rem;
+}
+.box1{
+    background-color: blueviolet;
+    color: white;
+     width: 100px;
+    height: 100px;
+    text-align: center;
+    
+}
+.box2{
+    background-color: burlywood;
+    color: white;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+}
+.box3{
+    background-color: chocolate;
+    color: white;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+}

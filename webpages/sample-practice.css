@@ -22,7 +22,8 @@
         }
         .main{
             display: flex;
-             gap: 0.2rem;
+            flex-direction: column;
+            gap: 0.2rem;
             width: 100%;
             .left,.right,.middle{
                 display: flex;
