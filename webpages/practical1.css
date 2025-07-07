@@ -2,5 +2,36 @@
             
             color: rgb(251, 100, 100);
             padding: 10px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+           font-family:"fantasy";
+}
+.moving-img {
+  position: relative;
+  animation: moveImage 5s linear infinite alternate;
+  width:200px;
+  height:250px;
+}
+
+@keyframes moveImage {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 500px;
+  }
+}
+.line {
+    
+  display: inline-block;
+  background-color: aqua;
+  position:relative;
+  animation: scrollLine 10s linear infinite ;
+}
+
+@keyframes scrollLine {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -500px;
+  }
+}

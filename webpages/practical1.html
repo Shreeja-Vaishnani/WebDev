@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Portal</title>
+    <link rel="stylesheet" href="practical1.css">
    
 </head>
-<body>
-    <h1 style= color:red><em>Welcome to Charusat Student Portal</em></h1>
+<body> 
+  <div class="header">
+    <h1>Welcome to Charusat Student Portal</h1>
+     </div>
     <div id="logo"><img src="charusat logo.jpeg" width="500px" height="80px"   alt="img"></div>
-   
+  
     <div> 
       <a onclick="showSection('home')">Home</a>
       <a onclick="showSection('login')">Login</a>
@@ -22,7 +25,13 @@
    <!-- Home -->
   <section id="home">
     <h2>Home</h2>
-    <p>Welcome to the Student Portal. Access all your academic needs from one place.</p>
+    <p>
+       <div class="line">Welcome to the Student Portal. Access all your academic needs from one place.</div>
+    </br>   
+    </br>
+    
+      <img src="charusat-gate-img.png" class="moving-img">
+    </p>
   </section>
 <!-- Login -->
   <section id="login">
