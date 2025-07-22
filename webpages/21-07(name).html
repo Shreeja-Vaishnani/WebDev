@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="name1">First Name:</label>
+    <input type="text" id="name1">
+    <br>
+    <br>
+    <label for="name2">First Name:</label>
+    <input type="text" id="name2">
+    <br><br>
+    <button onclick="add()">click me</button>
+    <br><br>
+
+    <script>
+    function add()
+    {
+        var name1=document.getElementById('name1').value;
+        var name2=document.getElementById('name2').value;
+        var fullname=name1+" "+name2;
+        alert("welcome "+fullname);
+    }
+    </script>
+</body>
+</html>

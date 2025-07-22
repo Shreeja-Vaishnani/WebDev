@@ -2,29 +2,27 @@
             
             color: rgb(251, 100, 100);
             padding: 10px;
-           font-family:"fantasy";
+           font-style:Italic;
 }
 .moving-img {
-  position: relative;
+  position:relative;
   animation: moveImage 5s linear infinite alternate;
-  width:200px;
-  height:250px;
+  width:250px;
+  height:500px;
 }
 
-@keyframes moveImage {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: 500px;
-  }
+.img {
+  width:1130px;
+  height:1000px;
 }
 .line {
     
-  display: inline-block;
-  background-color: aqua;
+  display:inline-flex;
+  background-color:darkblue;
+color:aqua;
+font-style:oblique;
   position:relative;
-  animation: scrollLine 10s linear infinite ;
+  animation:scrollLine 10s linear infinite ;
 }
 
 @keyframes scrollLine {
@@ -34,4 +32,12 @@
   to {
     left: -500px;
   }
+}
+.div{
+  color: aqua;
+  background-color: chocolate;
+  width:auto;
+  height:auto;
+  text-decoration-color: blueviolet;
+  text-align: center;
 }
