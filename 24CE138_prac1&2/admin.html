@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel | Charusat Portal</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <header>
+    <h1>Admin Control Panel</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="logout.html">Logout</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Welcome, Admin!</h2>
+    <p>Manage students, events, and portal settings from here.</p>
+    <p>Use the options above to return to Home or logout securely.</p>
+
+    <div class="carousel-container">
+      <div class="carousel-track" id="carousel-track">
+        <img class="carousel-slide" src="1.png" alt="Slide 1">
+        <img class="carousel-slide" src="2.png" alt="Slide 2">
+        <img class="carousel-slide" src="charusat-img1.png" alt="Slide 3">
+        <img class="carousel-slide" src="charusat logo.jpeg" alt="Slide 4">
+        <img class="carousel-slide" src="charusat-gate-img.png" alt="Slide 5">
+      </div>
+    </div>
+    <button id="prev">‹</button>
+    <button id="next">›</button>
+  </main>
+
+  <script>
+    const track = document.getElementById('carousel-track');
+    const slides = track.children;
+    let index = 0;
+
+    function updateSlider() {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    document.getElementById('prev').addEventListener('click', () => {
+      index--;
+      if (index < 0) index = slides.length - 1;
+      updateSlider();
+    });
+
+    document.getElementById('next').addEventListener('click', () => {
+      index++;
+      if (index >= slides.length) index = 0;
+      updateSlider();
+    });
+
+    updateSlider();
+  </script>
+</body>
+</html>

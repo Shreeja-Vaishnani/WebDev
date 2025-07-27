@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pull-String Bulb</title>
+  <style>
+    :root {
+      --bg: #1f1f1f;
+      --bulb-glow: #ffe600;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+
+    .scene {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    svg {
+      width: 150px;
+      transition: all 0.3s ease;
+    }
+
+    .bulb-glow {
+      fill: transparent;
+      transition: fill 0.4s ease, filter 0.4s ease;
+    }
+ .on .bulb-glow {
+      fill: var(--bulb-glow);
+      
+    }
+
+   
+    .string {
+      width: 3px;
+      height: 80px;
+      background: #aaa;
+      margin-top: -10px;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s ease;
+    }
+
+    .string::after {
+      content: '';
+      width: 16px;
+      height: 16px;
+      background: #ddd;
+      border-radius: 50%;
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 4px #0005;
+    }
+
+    .hint {
+      color: #ccc;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scene" id="scene">
+    <!-- Bulb SVG -->
+    <svg viewBox="0 0 64 128" id="bulbSvg">
+      <!-- Bulb glass -->
+      <path d="M32,0
+               C12,0 4,20 10,36
+               C18,52 18,60 18,66
+               C18,74 46,74 46,66
+               C46,60 46,52 54,36
+               C60,20 52,0 32,0Z"
+            fill="#444" stroke="#999" stroke-width="2" class="bulb-glow"/>
+
+      <!-- Filament -->
+      <path d="M24,50 Q32,45 40,50" stroke="#ffa500" stroke-width="2" fill="none" class="filament"/>
+
+      <!-- Base -->
+      <rect x="24" y="74" width="16" height="10" fill="#666"/>
+      <rect x="24" y="84" width="16" height="6" fill="#333"/>
+      <rect x="24" y="90" width="16" height="6" fill="#444"/>
+    </svg>
+
+    <!-- Pull String -->
+    <div class="string" id="string"></div>
+    <div class="hint">Pull the string to turn ON/OFF the bulb</div>
+  </div>
+
+  <script>
+    const scene = document.getElementById("scene");
+    const string = document.getElementById("string");
+
+    function pullBulb() {
+      string.style.transform = "translateY(20px)";
+      setTimeout(() => {
+        string.style.transform = "translateY(0)";
+        scene.classList.toggle("on");
+      }, 150);
+    }
+
+    string.addEventListener("mousedown", pullBulb);
+    string.addEventListener("touchstart", pullBulb);
+  </script>
+
+</body>
+</html>

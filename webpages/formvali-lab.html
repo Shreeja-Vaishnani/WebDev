@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+  <style>
+    .valid { color: green; }
+    .invalid { color: red; }
+  </style>
+</head>
+<body>
+
+  <h2>Enter PAN Number:</h2>
+  <input type="text" id="pannumber" placeholder="ABCDE1234F" oninput="validatePAN()">
+  <p id="result" class="invalid"></p>
+
+  <h3>Enter your Name:</h3>
+  <input type="text" id="name" placeholder="abcde" oninput="validateName()">
+  <p id="result1" class="invalid"></p>
+
+  <h3>Enter your Phone Number:</h3>
+  <input type="text" id="phonenumber" placeholder="1234567890" oninput="validatePhoneNumber()">
+  <p id="result2" class="invalid"></p>
+  <script>
+    function validatePAN() {
+      var pannumber = document.getElementById("pannumber").value;
+      var reg = /^[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}$/i;
+      var result = document.getElementById("result");
+
+      if (reg.test(pannumber)) {
+        result.innerHTML = "Valid PAN number.";
+        result.className = "valid";
+      } else {
+        result.innerHTML = "Invalid PAN number.";
+        result.className = "invalid";
+      }
+    }
+
+    function validateName() {
+      var name = document.getElementById("name").value;
+      var reg = /^[a-zA-Z]{3,20}$/;
+      var result = document.getElementById("result1");
+
+      if (reg.test(name)) {
+        result.innerHTML = "Valid Name.";
+        result.className = "valid";
+      } else {
+        result.innerHTML = "Invalid Name.";
+        result.className = "invalid";
+      }
+    }
+
+    function validatePhoneNumber() {
+      var phone = document.getElementById("phonenumber").value;
+      var reg = /^[0-9]{10}$/;
+      var result = document.getElementById("result2");
+
+      if (reg.test(phone)) {
+        result.innerHTML = "Valid Number.";
+        result.className = "valid";
+      } else {
+        result.innerHTML = "Invalid Number.";
+        result.className = "invalid";
+      }
+    }
+  </script>
+</body>
+</html>

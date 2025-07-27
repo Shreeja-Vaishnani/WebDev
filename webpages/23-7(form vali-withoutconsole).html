@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>form validation</title>
+</head>
+<body>
+
+  <h2>Enter PAN Number:</h2>
+  <input type="text" id="pannumber" placeholder="ABCDE1234F">
+  <button onclick="validatePAN()">Validate</button>
+  <p id="result"></p>
+<h3>Enter your Name</h3>
+<input type="text" id="name" placeholder="abcde">
+  <button onclick="result()">Check</button>
+  <p id="result1"></p>
+  
+<h3>Enter your Number</h3>
+<input type="text" id="phonenumber" placeholder="1234">
+  <button onclick="phonenumber()">Check</button>
+  <p id="result2"></p>
+  <script>
+    function validatePAN() {
+      var pannumber = document.getElementById("pannumber").value;
+      var reg = /^[a-z]{5}[0-9]{4}[a-z]{1}$/;
+      var result = document.getElementById("result");
+
+      if (reg.test(pannumber)) {
+        result.innerHTML = "Valid PAN number.";
+      } else {
+        result.innerHTML = "Invalid PAN number.";
+      }
+    }
+
+    function result() {
+      var name = document.getElementById("name").value;
+      var reg = /^[a-z]{3,20}[a-z]{3,20}$/;
+      var result = document.getElementById("result1");
+
+      if (reg.test(name)) {
+        result.innerHTML = "Valid Name.";
+       
+      } else {
+        result.innerHTML = "Invalid Name.";
+        
+      }
+    }
+    function phonenumber() {
+      var name = document.getElementById("phonenumber").value;
+          var reg=/^[0-9]{10}/;
+         var result = document.getElementById("result2");
+
+      if (reg.test(name)) {
+        result.innerHTML = "Valid Number.";
+       
+      } else {
+        result.innerHTML = "Invalid Number.";
+        
+      }
+    }
+     
+  </script>
+
+</body>
+</html>

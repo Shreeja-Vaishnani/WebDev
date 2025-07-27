@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard | Charusat Portal</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <header>
+    <h1>Student Dashboard</h1>
+    <nav>
+      <button onclick="showSection('profile')">My Information</button>
+      <button onclick="showSection('achievements')">My Achievements</button>
+      <a href="index.html">Go to Home Page</a>
+      <a href="logout.html">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Home section -->
+    <section id="home" class="section">
+      <h2>Welcome to your dashboard!</h2>
+      <p>Manage your profile, view your achievements, and stay updated.</p>
+    </section>
+
+    <!-- Profile section -->
+    <section id="profile" class="section hidden">
+      <h2>My Information</h2>
+      <p><strong>Name:</strong> Shreeja Vaishnani</p>
+      <p><strong>Enrollment No:</strong> 24CE138</p>
+      <p><strong>Branch:</strong> Computer Engineering</p>
+    </section>
+
+    <!-- Achievements section -->
+    <section id="achievements" class="section hidden">
+      <h2>My Achievements</h2>
+      <ul>
+        <li>creaters hub winner</li>
+        <li>participated in many hackathons</li>
+        <li>coming soon.....</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(sec => {
+        sec.classList.add('hidden');
+      });
+      document.getElementById(sectionId).classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>

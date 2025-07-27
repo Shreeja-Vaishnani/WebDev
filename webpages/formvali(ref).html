@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #6cdce6;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    form {
+      background: rgba(246, 246, 246, 0.393);
+      padding: 25px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .error {
+      color: rgb(112, 24, 194);
+      font-size: 0.8em;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #2dde45;
+      color: rgb(243, 240, 240);
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="registrationForm" onsubmit="return validateForm()">
+    <h2>User Registration</h2>
+
+    <label>Username:</label>
+
+    <input type="text" id="username" required>
+    <div class="error" id="usernameError"></div>
+
+    <label>Email:</label>
+    <input type="email" id="email" required>
+    <div class="error" id="emailError"></div>
+
+    <label>Password:</label>
+    <input type="password" id="password" required>
+    <div class="error" id="passwordError"></div>
+
+    <label>Confirm Password:</label>
+    <input type="password" id="confirmPassword" required>
+    <div class="error" id="confirmPasswordError"></div>
+
+    <label>Mobile Number:</label>
+    <input type="tel" id="mobile" pattern="[0-9]{10}" required>
+    <div class="error" id="mobileError"></div>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      let isValid = true;
+
+      
+      document.querySelectorAll('.error').forEach(e => e.textContent = '');
+
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const mobile = document.getElementById('mobile').value.trim();
+
+
+      const usernamePattern = /^[a-zA-Z]{3}[^\s\s]{0,7}$/;
+
+        if (!username) 
+        {
+            document.getElementById('usernameError').textContent = "Username is required.";
+            isValid = false;
+        } 
+        if(!usernamePattern.test(username))
+        {
+            document.getElementById('usernameError').textContent = "Username must start with 3 letters and can be followed by up to 7 characters.";
+            isValid = false;
+        }        
+        if (username.length < 3) 
+        {
+        document.getElementById('usernameError').textContent = "Username must be at least 3 characters long.";
+        isValid = false;
+        }
+
+      
+      // const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailPattern = /^(24ce\d{3}|d25ce\d{3})@charusat\.edu\.in$/;
+      if (!emailPattern.test(email)) {
+        document.getElementById('emailError').textContent = "Invalid email address.";
+        isValid = false;
+      }
+
+      const passwordPattern = /^(?=.*\d).{6,}$/;
+      if (!passwordPattern.test(password)) {
+        document.getElementById('passwordError').textContent = "Password must be at least 6 characters long and contain a number.";
+        isValid = false;
+      }
+
+    
+      if (password !== confirmPassword) {
+        document.getElementById('confirmPasswordError').textContent = "Passwords do not match.";
+        isValid = false;
+      }
+
+      if (!/^\d{10}$/.test(mobile)) {
+        document.getElementById('mobileError').textContent = "Mobile number must be 10 digits.";
+        isValid = false;
+      }
+      alert("Registration successful!");
+      return isValid;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Styled Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      background: #2e2e2e;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      width: 320px;
+      box-sizing: border-box;
+    }
+
+    .display-container {
+      background: #000;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .display {
+      width: 100%;
+      font-size: 30px;
+      background: #000;
+      color: #0f0;
+      border: none;
+      outline: none;
+      text-align: right;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #4d4d4d;
+      color: white;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #6e6e6e;
+    }
+
+    .operator {
+      background-color: #f39c12;
+    }
+
+    .operator:hover {
+      background-color: #e67e22;
+    }
+
+    .equal {
+      background-color: #27ae60;
+      color: white;
+      grid-column: span 2;
+    }
+
+    .equal:hover {
+      background-color: #2ecc71;
+    }
+
+    .clear {
+      background-color: #e74c3c;
+    }
+
+    .clear:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    <div class="display-container">
+      <input type="text" class="display" id="display" placeholder="0" oninput="validateInput(this)">
+    </div>
+    <div class="buttons">
+      <button onclick="clearDisplay()" class="clear">C</button>
+      <button onclick="appendValue('%')" class="operator">%</button>
+      <button onclick="appendValue('/')" class="operator">/</button>
+      <button onclick="deleteChar()" class="operator">⌫</button>
+
+      <button onclick="appendValue('7')">7</button>
+      <button onclick="appendValue('8')">8</button>
+      <button onclick="appendValue('9')">9</button>
+      <button onclick="appendValue('*')" class="operator">*</button>
+
+      <button onclick="appendValue('4')">4</button>
+      <button onclick="appendValue('5')">5</button>
+      <button onclick="appendValue('6')">6</button>
+      <button onclick="appendValue('-')" class="operator">-</button>
+
+      <button onclick="appendValue('1')">1</button>
+      <button onclick="appendValue('2')">2</button>
+      <button onclick="appendValue('3')">3</button>
+      <button onclick="appendValue('+')" class="operator">+</button>
+
+      <button onclick="appendValue('0')">0</button>
+      <button onclick="appendValue('.')">.</button>
+      <button onclick="calculate()" class="equal">=</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+
+    function appendValue(val) {
+      display.value += val;
+    }
+
+    function clearDisplay() {
+      display.value = '';
+    }
+
+    function deleteChar() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch (e) {
+        display.value = "Error";
+      }
+    }
+
+    function validateInput(input) {
+      input.value = input.value.replace(/[^0-9+\-*/.%()]/g, '');
+    }
+  </script>
+
+</body>
+</html>
