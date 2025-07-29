@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Change Heading</title>
+  
+</head>
+<body>
+
+  <h1 id="main-heading">Hello Shreeja</h1>
+<button onclick="changeHeading()">Click to Change</button>
+  <script>
+    let currentText = "Hello Shreeja";
+
+    function changeHeading() {
+      const heading = document.getElementById("main-heading");
+
+      if (currentText === "Hello Shreeja") 
+      {
+        currentText = "Hello CE";
+      } 
+      else if (currentText === "Hello CE")
+       {
+        currentText = "Hello Charusat";
+      } 
+      else if (currentText === "Hello Charusat") {
+        currentText = "Hello Student";
+      } else if (currentText === "Hello Student") {
+        currentText = "Hello Portal";
+      } else {
+        currentText = "Hello Shreeja";
+      }
+
+      heading.textContent = currentText;
+    }
+   
+  </script>
+</body>
+</html>

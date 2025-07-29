@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Change Heading</title>
+  <style>
+    .style-shreeja {
+      color:orange;
+    }
+
+    .style-ce {
+      color:lime;
+    }
+
+    .style-charusat {
+      color: mediumslateblue;
+    }
+
+    .style-student {
+      color: seagreen;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color:blue;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+   
+
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background-color:white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="main-heading" class="style-shreeja">Hello Shreeja</h1>
+  <button onclick="changeHeading()">Click to Change</button>
+
+  <script>
+    const states = [
+      { text: "Hello Shreeja", className: "style-shreeja" },
+      { text: "Hello CE", className: "style-ce" },
+      { text: "Hello Charusat", className: "style-charusat" },
+      { text: "Hello Student", className: "style-student" }
+    ];
+
+    let currentIndex = 0;
+
+    function changeHeading() {
+      const heading = document.getElementById("main-heading");
+
+      currentIndex = (currentIndex + 1) % states.length;
+
+      heading.textContent = states[currentIndex].text;
+
+      // Remove all style classes
+      heading.className = "";
+
+      // Add the new style class
+      heading.classList.add(states[currentIndex].className);
+    }
+  </script>
+
+</body>
+</html>

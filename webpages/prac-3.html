@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Colored User Registration</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(to right, #74ebd5, #9face6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #ffffffee;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      margin-top: 12px;
+      display: block;
+      color: #333;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #5c6bc0;
+      background-color: #fff;
+      box-shadow: 0 0 5px rgba(92, 107, 192, 0.5);
+      outline: none;
+    }
+
+    .error {
+      color: #e53935;
+      font-size: 13px;
+      margin-top: 3px;
+    }
+
+    .strength {
+      height: 6px;
+      margin-top: 5px;
+      border-radius: 3px;
+      background-color: #ccc;
+      transition: 0.3s;
+    }
+    
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #43e97b, #38f9d7);
+    }
+  </style>
+</head>
+<body>
+  <form class="container" id="registrationForm" novalidate>
+    <h2>Register Now</h2>
+
+    <label>Username</label>
+    <input type="text" id="username" placeholder="e.g. shreeja">
+    <div class="error" id="usernameError"></div>
+
+    <label>Email</label>
+    <input type="email" id="email" placeholder="24ce138@charusat.edu.in">
+    <div class="error" id="emailError"></div>
+
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Create password">
+    <div class="strength" id="strengthBar"></div>
+    <div class="error" id="passwordError"></div>
+
+    <label>Confirm Password</label>
+    <input type="password" id="confirmPassword" placeholder="Re-enter password">
+    <div class="error" id="confirmPasswordError"></div>
+
+    <label>Mobile</label>
+    <input type="tel" id="mobile" placeholder="10-digit number" maxlength="10">
+    <div class="error" id="mobileError"></div>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("registrationForm");
+
+    const fields = {
+      username: document.getElementById("username"),
+      email: document.getElementById("email"),
+      password: document.getElementById("password"),
+      confirmPassword: document.getElementById("confirmPassword"),
+      mobile: document.getElementById("mobile")
+    };
+
+    const errors = {
+      username: document.getElementById("usernameError"),
+      email: document.getElementById("emailError"),
+      password: document.getElementById("passwordError"),
+      confirmPassword: document.getElementById("confirmPasswordError"),
+      mobile: document.getElementById("mobileError")
+    };
+
+    const strengthBar = document.getElementById("strengthBar");
+
+    function validateUsername() {
+      const val = fields.username.value.trim();
+      const pattern = /^[a-zA-Z]{3,10}$/;
+      if (!val) return showError("username", "Username is required.");
+      if (!pattern.test(val)) return showError("username", "Only 3–10 letters allowed.");
+      return clearError("username");
+    }
+
+    function validateEmail() {
+      const val = fields.email.value.trim();
+      const pattern = /^(24ce\d{3}|25ce\d{3})@charusat\.edu\.in$/;
+      if (!val) return showError("email", "Email is required.");
+      if (!pattern.test(val)) return showError("email", "Format: 24ce138@charusat.edu.in");
+      return clearError("email");
+    }
+
+    function validatePassword() {
+      const val = fields.password.value;
+      let strength = 0;
+      if (val.length >= 6) strength++;
+      if (/[A-Z]/.test(val)) strength++;
+      if (/[0-9]/.test(val)) strength++;
+      if (/[\W]/.test(val)) strength++;
+
+      strengthBar.className = "strength";
+      if (val.length > 0) {
+        if (strength >= 4) strengthBar.classList.add("strong");
+        else if (strength >= 2) strengthBar.classList.add("medium");
+        else strengthBar.classList.add("weak");
+      }
+
+      const pattern = /^(?=.*\d).{6,}$/;
+      if (!pattern.test(val)) return showError("password", "Min 6 chars with 1 number.");
+      return clearError("password");
+    }
+
+    function validateConfirmPassword() {
+      if (fields.confirmPassword.value !== fields.password.value)
+        return showError("confirmPassword", "Passwords do not match.");
+      return clearError("confirmPassword");
+    }
+
+    function validateMobile() {
+      const val = fields.mobile.value.trim();
+      if (!/^\d{10}$/.test(val)) return showError("mobile", "Enter 10-digit number.");
+      return clearError("mobile");
+    }
+
+    function showError(field, message) {
+      errors[field].textContent = message;
+      return false;
+    }
+
+    function clearError(field) {
+      errors[field].textContent = "";
+      return true;
+    }
+
+    fields.username.addEventListener("input", validateUsername);
+    fields.email.addEventListener("input", validateEmail);
+    fields.password.addEventListener("input", () => {
+      validatePassword();
+      validateConfirmPassword();
+    });
+    fields.confirmPassword.addEventListener("input", validateConfirmPassword);
+    fields.mobile.addEventListener("input", validateMobile);
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const valid =
+        validateUsername() &
+        validateEmail() &
+        validatePassword() &
+        validateConfirmPassword() &
+        validateMobile();
+
+      if (valid) {
+        alert("Registration successful!");
+        form.reset();
+        strengthBar.className = "strength";
+        Object.values(errors).forEach(err => err.textContent = "");
+      }
+    });
+  </script>
+</body>
+</html>
